@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    td {
+      border: 1px solid black
+    }
+  </style>
+</head>
+
+<body>
+  <table id="data">
+    <tr>
+    <th>state</th>
+    <th>total confirmed cases</th>
+    </tr>
+
+  </table>
+  <script>
+    fetch("https://api.rootnet.in/covid19-in/stats/latest%22").then((res) => res.json()).then(resp => {
+      console.log(resp)
+      let table = document.getElementById("data")
+      resp.data.regional.sort((state1,state2)=>{
+        return state2.totalConfirmed - state1.totalConfirmed;
+      })
+      // let arr = resp.data.regional;
+      // for (let i = 1; i < arr.length; i++) {
+      //   let element =arr[i];
+      //   let j = i-1;
+      //   while(j>=0 && arr[j].totalConfirmed<element.totalConfirmed)
+      //   {
+      //     arr[j+1]=arr[j];
+      //     j--;
+      //   }
+      //   arr[j+1] = element;
+      // }
+      for (let index = 0; index < resp?.data?.regional?.length; index++) {
+        const element = resp?.data?.regional[index];
+        let newRow = document.createElement("tr")
+        let newStatetd = document.createElement("td")
+        let newTCCtd = document.createElement("td")
+        let statenode = document.createTextNode(element.loc)
+
+        let tccnode = document.createTextNode(element.totalConfirmed)
+        newStatetd.appendChild(statenode)
+        newTCCtd.appendChild(tccnode)
+        newRow.appendChild(newStatetd)
+        newRow.appendChild(newTCCtd)
+        table.appendChild(newRow)
+      }
+
+    })
+  </script>
+</body>
+
+</html>
