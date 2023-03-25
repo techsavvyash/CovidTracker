@@ -3,7 +3,7 @@ const app = express() ;
 
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + 'public/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 })
 
 app.get('/style.css', (req, res) => {
