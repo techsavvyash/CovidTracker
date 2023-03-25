@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    th{
+      color:rebeccapurple;
+    }
     td {
       border: 1px solid black
     }
@@ -20,6 +23,7 @@
     </tr>
 
   </table>
+  <h3>Made by Shashwat</h3>
   <script>
     fetch("https://api.rootnet.in/covid19-in/stats/latest%22").then((res) => res.json()).then(resp => {
       console.log(resp)
